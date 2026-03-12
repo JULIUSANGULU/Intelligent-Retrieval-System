@@ -163,3 +163,9 @@ if search and query:
 
         </div>
         """, unsafe_allow_html=True)
+        
+st.subheader("Evaluation Results")
+
+results = pd.read_csv("evaluation_results.csv")
+
+st.dataframe(results)
