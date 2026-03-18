@@ -11,7 +11,6 @@ from retrieval_models.semantic_retrieval import SemanticRetrieval
 
 st.set_page_config(
     page_title="AI Information Retrieval System",
-    page_icon="🔎",
     layout="wide"
 )
 
@@ -105,7 +104,7 @@ st.sidebar.info("AI Retrieval using TF-IDF and Semantic Search")
 
 st.markdown("""
 <div class="hero">
-<h1>🔎 Intelligent Information Retrieval System</h1>
+<h1> Intelligent Information Retrieval System</h1>
 <p>
 An AI-powered search engine for retrieving relevant knowledge
 from the university information repository using advanced
