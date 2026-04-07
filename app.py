@@ -1,23 +1,17 @@
 import pandas as pd
 import streamlit as st
 
-from retrieval_models.tfidf_retrieval import TFIDFRetrieval
-from retrieval_models.semantic_retrieval import SemanticRetrieval
+from retrieval_models.bm25_retrieval import BM25Retrieval
+from retrieval_models.sbert_retrieval import SBERTRetrieval
 
 
-# ---------------------------------------------------
 # PAGE CONFIG
-# ---------------------------------------------------
-
 st.set_page_config(
     page_title="AI Information Retrieval System",
     layout="wide"
 )
 
-# ---------------------------------------------------
 # CUSTOM STYLES
-# ---------------------------------------------------
-
 st.markdown("""
 <style>
 
@@ -74,20 +68,14 @@ html, body, [class*="css"]  {
 """, unsafe_allow_html=True)
 
 
-# ---------------------------------------------------
 # LOAD DATA
-# ---------------------------------------------------
-
 docs = pd.read_csv("data/ir_documents.csv")
 
-tfidf_model = TFIDFRetrieval(docs)
-semantic_model = SemanticRetrieval(docs)
+bm25_model = BM25Retrieval(docs)
+sbert_model = SBERTRetrieval(docs)
 
 
-# ---------------------------------------------------
 # SIDEBAR
-# ---------------------------------------------------
-
 st.sidebar.title("System Dashboard")
 
 st.sidebar.metric("Documents Indexed", len(docs))
@@ -95,32 +83,26 @@ st.sidebar.metric("Models Available", "2")
 st.sidebar.metric("System Status", "Active")
 
 st.sidebar.markdown("---")
-st.sidebar.info("AI Retrieval using TF-IDF and Semantic Search")
+st.sidebar.info("Baseline: BM25 | Intelligent Model: SBERT")
 
 
-# ---------------------------------------------------
 # HERO SECTION
-# ---------------------------------------------------
-
 st.markdown("""
 <div class="hero">
 <h1> Intelligent Information Retrieval System</h1>
 <p>
-An AI-powered search engine for retrieving relevant knowledge
-from the university information repository using advanced
-machine learning retrieval techniques.
+A hybrid AI-powered search system designed to compare traditional 
+and intelligent retrieval techniques for improved information access 
+within a university knowledge base.
 </p>
 </div>
 """, unsafe_allow_html=True)
 
 
-# ---------------------------------------------------
 # SEARCH PANEL
-# ---------------------------------------------------
-
 st.markdown('<div class="search-container">', unsafe_allow_html=True)
 
-col1, col2 = st.columns([3,1])
+col1, col2, col3 = st.columns([3,1,1])
 
 with col1:
     query = st.text_input("Enter your search query")
@@ -128,7 +110,14 @@ with col1:
 with col2:
     model_choice = st.selectbox(
         "Retrieval Model",
-        ["TF-IDF", "Semantic AI"]
+        ["BM25 (Baseline)", "SBERT (Semantic AI)"]
+    )
+
+# 🔥 NEW (Supervisor requirement)
+with col3:
+    query_type = st.selectbox(
+        "Query Type",
+        ["Normal", "Short Query", "Synonym", "Paraphrased"]
     )
 
 search = st.button("🔍 Search")
@@ -136,18 +125,17 @@ search = st.button("🔍 Search")
 st.markdown("</div>", unsafe_allow_html=True)
 
 
-# ---------------------------------------------------
 # RESULTS
-# ---------------------------------------------------
-
 if search and query:
 
-    if model_choice == "TF-IDF":
-        results = tfidf_model.search(query)
-    else:
-        results = semantic_model.search(query)
+    st.info(f"Query Type: {query_type}")
 
-    st.subheader("Top Search Results")
+    if model_choice == "BM25 (Baseline)":
+        results = bm25_model.search(query)
+    else:
+        results = sbert_model.search(query)
+
+    st.subheader(f"Top {len(results)} Search Results")
 
     for rank, doc_id in enumerate(results, start=1):
 
@@ -162,9 +150,13 @@ if search and query:
 
         </div>
         """, unsafe_allow_html=True)
-        
+
+
+# EVALUATION RESULTS
 st.subheader("Evaluation Results")
 
-results = pd.read_csv("evaluation_results.csv")
-
-st.dataframe(results)
+try:
+    results_df = pd.read_csv("evaluation_results.csv")
+    st.dataframe(results_df)
+except:
+    st.warning("Run evaluation script to generate results.")

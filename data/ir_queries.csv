@@ -1,51 +1,50 @@
-query_id,query
-1,How do I course registration procedures?
-2,Guide for checking exam schedules
-3,Where can I find information about requesting official academic transcripts?
-4,What is the process for accessing your university email account?
-5,What is the process for checking exam schedules?
-6,What is the process for viewing the academic calendar?
-7,How do I resetting your university portal password?
-8,How can students understanding grading policies?
-9,How do I requesting official academic transcripts?
-10,How can students booking appointments with academic advisors?
-11,What is the process for attendance and participation rules?
-12,How can students replacing a lost student id card?
-13,What is the process for replacing a lost student id card?
-14,How do I troubleshooting login issues on the student portal?
-15,How can students installing university licensed software?
-16,What is the process for understanding grading policies?
-17,How can students late registration penalties?
-18,Guide for connecting to the campus wifi network
-19,How do I understanding grading policies?
-20,What is the process for booking appointments with academic advisors?
-21,Guide for booking appointments with academic advisors
-22,Guide for graduation eligibility requirements
-23,How can students applying for student accommodation?
-24,Guide for requesting official academic transcripts
-25,Guide for using university library resources
-26,What is the process for booking appointments with academic advisors?
-27,How can students tuition fee payment policy?
-28,What is the process for course withdrawal guidelines?
-29,Guide for course withdrawal guidelines
-30,What is the process for tuition fee payment policy?
-31,How can students course withdrawal guidelines?
-32,Where can I find information about accessing your university email account?
-33,Where can I find information about understanding grading policies?
-34,Where can I find information about applying for student accommodation?
-35,How do I graduation eligibility requirements?
-36,What is the process for troubleshooting login issues on the student portal?
-37,How can students understanding grading policies?
-38,What is the process for troubleshooting login issues on the student portal?
-39,How can students accessing your university email account?
-40,Where can I find information about using university library resources?
-41,How can students graduation eligibility requirements?
-42,How do I using university library resources?
-43,How can students viewing the academic calendar?
-44,Guide for replacing a lost student id card
-45,Guide for resetting your university portal password
-46,How can students replacing a lost student id card?
-47,Where can I find information about resetting your university portal password?
-48,How can students checking exam schedules?
-49,Guide for using university library resources
-50,Guide for graduation eligibility requirements
+query_id,query,query_type
+1,course registration procedures,short
+2,Guide for checking exam schedules,normal
+3,requesting official academic transcripts,short
+4,accessing university email account,normal
+5,checking exam schedules,short
+6,viewing the academic calendar,normal
+7,reset university portal password,synonym
+8,understanding grading policies,normal
+9,request academic transcripts,synonym
+10,booking appointments with academic advisors,normal
+11,attendance and participation rules,normal
+12,replacing a lost student id card,normal
+13,replace lost student id card,synonym
+14,troubleshooting login issues student portal,normal
+15,installing university licensed software,normal
+16,grading policy explanation,paraphrase
+17,late registration penalties,normal
+18,connecting to campus wifi network,normal
+19,grading system explanation,paraphrase
+20,book appointment academic advisor,synonym
+21,guide booking academic advisor,paraphrase
+22,graduation eligibility requirements,normal
+23,apply for student accommodation,synonym
+24,request transcripts guide,paraphrase
+25,using university library resources,normal
+26,book advisor appointment process,paraphrase
+27,tuition fee payment policy,normal
+28,course withdrawal guidelines,normal
+29,withdraw course guide,paraphrase
+30,how to pay tuition fees,paraphrase
+31,withdraw course process,synonym
+32,find university email access info,paraphrase
+33,grading policy information,paraphrase
+34,apply for student housing,synonym
+35,graduation requirements,short
+36,fix login issues student portal,synonym
+37,login issue troubleshooting process,paraphrase
+38,access university email,synonym
+39,library resource usage info,paraphrase
+40,graduation eligibility criteria,paraphrase
+41,use university library,short
+42,view academic calendar,synonym
+43,replace student id guide,paraphrase
+44,reset portal password guide,paraphrase
+45,replace lost student id,synonym
+46,reset university portal password,synonym
+47,check exam schedules,synonym
+48,library usage guide,paraphrase
+49,graduation requirements guide,paraphrase

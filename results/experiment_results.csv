@@ -1,4 +1,4 @@
-query,boolean_precision,boolean_recall,tfidf_precision,tfidf_recall,semantic_precision,semantic_recall
+query,boolean_precision,boolean_recall,bm25_precision,bm25_recall,sbert_precision,sbert_recall
 How do I course registration procedures?,0.0,0.0,0.6,1.0,0.6,1.0
 Guide for checking exam schedules,0.0,0.0,0.6,1.0,0.6,1.0
 Where can I find information about requesting official academic transcripts?,0.0,0.0,0.0,0.0,0.0,0.0
