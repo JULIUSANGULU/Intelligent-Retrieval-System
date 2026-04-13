@@ -23,7 +23,10 @@ class SBERTRetrieval:
             self.doc_embeddings
         ).flatten()
         
-        # Rank documents
+        # Rank documents by similarity
         ranked_indices = similarities.argsort()[::-1]
         
-        return ranked_indices[:5]
+        # ✅ STEP 2: Convert indices → actual document IDs
+        top_docs = self.documents.iloc[ranked_indices[:5]]
+        
+        return top_docs["doc_id"].tolist()

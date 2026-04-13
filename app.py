@@ -128,18 +128,61 @@ st.markdown("</div>", unsafe_allow_html=True)
 # RESULTS
 if search and query:
 
-    st.info(f"Query Type: {query_type}")
+    # ==============================
+    # Step 3: Modify query based on type
+    # ==============================
+
+    modified_query = query
+
+    if query_type == "Short Query":
+        # Take only key terms (simulate short query)
+        modified_query = " ".join(query.split()[:2])
+
+    elif query_type == "Synonym":
+        # Simple synonym replacement (demo logic)
+        synonyms = {
+            "reset": "change",
+            "password": "credentials",
+            "course": "class",
+            "registration": "enrollment",
+            "exam": "test",
+            "schedule": "timetable"
+        }
+
+        words = query.lower().split()
+        modified_query = " ".join([synonyms.get(w, w) for w in words])
+
+    elif query_type == "Paraphrased":
+        # Simple paraphrasing simulation
+        modified_query = f"Explain how to {query.lower()}"
+
+    # Show query transformation
+    st.info(f"""
+    Original Query: {query}  
+    Modified Query: {modified_query}  
+    Query Type: {query_type}
+    """)
+
+    # ==============================
+    # Retrieval
+    # ==============================
 
     if model_choice == "BM25 (Baseline)":
-        results = bm25_model.search(query)
+        results = bm25_model.search(modified_query)
     else:
-        results = sbert_model.search(query)
+        results = sbert_model.search(modified_query)
 
     st.subheader(f"Top {len(results)} Search Results")
 
     for rank, doc_id in enumerate(results, start=1):
 
-        doc = docs[docs.doc_id == doc_id].iloc[0]
+        doc_match = docs[docs.doc_id == doc_id]
+
+        # 🔥 Safety fix (prevents crash)
+        if doc_match.empty:
+            continue
+
+        doc = doc_match.iloc[0]
 
         st.markdown(f"""
         <div class="result-card">
@@ -150,7 +193,6 @@ if search and query:
 
         </div>
         """, unsafe_allow_html=True)
-
 
 # EVALUATION RESULTS
 st.subheader("Evaluation Results")

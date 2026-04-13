@@ -21,11 +21,14 @@ class BM25Retrieval:
         # Get BM25 scores
         scores = self.model.get_scores(tokenized_query)
         
-        # Rank documents
+        # Rank documents by score
         ranked_indices = sorted(
             range(len(scores)), 
             key=lambda i: scores[i], 
             reverse=True
         )
         
-        return ranked_indices[:5]
+        # ✅ Convert indices → actual document IDs
+        top_docs = self.documents.iloc[ranked_indices[:5]]
+        
+        return top_docs["doc_id"].tolist()
